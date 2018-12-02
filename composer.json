@@ -1,0 +1,14 @@
+{
+    "name": "andreasfurster/recipes",
+    "type": "project",
+    "require-dev": {
+        "phalcon/devtools": "^3.4"
+    },
+    "authors": [
+        {
+            "name": "Andreas Furster",
+            "email": "andreas.furster@hotmail.com"
+        }
+    ],
+    "require": {}
+}

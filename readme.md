@@ -17,9 +17,5 @@ Dit is een eenvoidige recepten applicatie voor de validatie van propedeuse leerj
 
 ### Development
 * Clone project
-* Run in Apache
-    * Point the DocumentRoot to the `/public` directory
-
 * Create database in mysql
-
-_Usage of composer is not required, could be usefull for development._
+* Run `composer install`

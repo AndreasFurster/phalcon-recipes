@@ -16,12 +16,6 @@ class Ingredient extends \Phalcon\Mvc\Model
     public $name;
 
     /**
-     *
-     * @var string
-     */
-    public $unit;
-
-    /**
      * Initialize method for model.
      */
     public function initialize()

@@ -27,7 +27,6 @@
             <tr>
                 <th>Id</th>
             <th>Name</th>
-            <th>Unit</th>
 
                 <th></th>
                 <th></th>
@@ -38,7 +37,6 @@
             <tr>
                 <td><?php echo $ingredient->Id ?></td>
             <td><?php echo $ingredient->Name ?></td>
-            <td><?php echo $ingredient->Unit ?></td>
 
                 <td><?php echo $this->tag->linkTo(["ingredient/edit/" . $ingredient->Id, "Edit"]); ?></td>
                 <td><?php echo $this->tag->linkTo(["ingredient/delete/" . $ingredient->Id, "Delete"]); ?></td>

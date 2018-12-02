@@ -87,7 +87,6 @@ class IngredientController extends ControllerBase
 
             $this->tag->setDefault("Id", $ingredient->Id);
             $this->tag->setDefault("Name", $ingredient->Name);
-            $this->tag->setDefault("Unit", $ingredient->Unit);
             
         }
     }
@@ -108,7 +107,6 @@ class IngredientController extends ControllerBase
 
         $ingredient = new Ingredient();
         $ingredient->name = $this->request->getPost("Name");
-        $ingredient->unit = $this->request->getPost("Unit");
         
 
         if (!$ingredient->save()) {
@@ -163,7 +161,6 @@ class IngredientController extends ControllerBase
         }
 
         $ingredient->name = $this->request->getPost("Name");
-        $ingredient->unit = $this->request->getPost("Unit");
         
 
         if (!$ingredient->save()) {

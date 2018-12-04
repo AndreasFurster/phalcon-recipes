@@ -1,3 +1,2 @@
-cache/volt/
-
 \.phalcon/
+app/cache/volt/

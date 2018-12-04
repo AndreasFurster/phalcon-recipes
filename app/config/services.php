@@ -84,10 +84,10 @@ $di->setShared('db', function () {
 $di->set('flashSession', function () {
     $flash = new FlashSession();
     $flash->setCssClasses([
-        'error'   => 'alert alert-danger',
-        'success' => 'alert alert-success',
-        'notice'  => 'alert alert-info',
-        'warning' => 'alert alert-warning'
+        'error'   => 'alert mt-3 alert-danger',
+        'success' => 'alert mt-3 alert-success',
+        'notice'  => 'alert mt-3 alert-info',
+        'warning' => 'alert mt-3 alert-warning'
     ]);
 
     return $flash;
@@ -98,6 +98,8 @@ $di->set('flashSession', function () {
  */
 $di->setShared('session', function () {
     $session = new SessionAdapter();
+
+    // session_start
     $session->start();
 
     return $session;

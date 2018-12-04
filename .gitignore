@@ -1,2 +1,4 @@
 \.phalcon/
-app/cache/volt/
+app/cache/*
+
+!.gitkeep

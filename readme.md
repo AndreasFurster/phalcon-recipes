@@ -8,5 +8,5 @@ This is a sample project written in Phalcon.
 
 ### Development
 * Clone project
-* Run `sql/schema.sql` and optionally `sql/seed.sql
+* Run `sql/schema.sql` and optionally `sql/seed.sql`
 

@@ -1,5 +1,5 @@
 # Phalcon recipes sample
-This is a sample project written in Phalcon. 
+This is a sample project written in Phalcon. View more information in the docs.
 
 ## Installation
 ### Requirements

@@ -1,8 +1,4 @@
 <?php
- 
-use Phalcon\Mvc\Model\Criteria;
-use Phalcon\Paginator\Adapter\Model as Paginator;
-use Phalcon\Flash\Direct as Flash;
 
 // Controller to mangage ingredients
 class IngredientsController extends ControllerBase

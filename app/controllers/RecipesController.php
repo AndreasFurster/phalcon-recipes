@@ -1,8 +1,4 @@
 <?php
- 
-use Phalcon\Mvc\Model\Criteria;
-use Phalcon\Paginator\Adapter\Model as Paginator;
-
 
 // Controller to mangage recipes
 class RecipesController extends ControllerBase

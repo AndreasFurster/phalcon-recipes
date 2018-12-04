@@ -15,7 +15,7 @@ class RecipesController extends ControllerBase
         // Find recipe
         $recipe = Recipe::findFirstById($id);
         if (!$recipe) {
-            $this->flashSession->error("recipe is niet (meer) gevonden");
+            $this->flashSession->error("Recept is niet (meer) gevonden");
             
             return $this->response->redirect('recipes');   
         }
@@ -41,13 +41,19 @@ class RecipesController extends ControllerBase
     {
         parent::checkAuthentication();
 
-        $recipe = Recipe::findFirstById($id);
-        
-        // Check recipe found
-        if (!$recipe) {
+        if($id !== null){
+            $recipe = Recipe::findFirstById($id);
+            
+            if(!$recipe) {
+                $this->flashSession->error("Recept is niet (meer) gevonden");
+                return;
+            }
+        }
+        else{
             $recipe = new Recipe();
         }
         
+
         // Handle post
         if ($this->request->isPost()) {
             
@@ -73,7 +79,7 @@ class RecipesController extends ControllerBase
                     $recipe_ingredient = RecipeIngredient::findFirstById($recipe_ingredient_id);
 
                     if (!$recipe_ingredient) {
-                        $this->flashSession->error("recipe is niet (meer) gevonden");    
+                        $this->flashSession->error("Recept is niet (meer) gevonden");    
                     }
                     else{
                         if (!$recipe_ingredient->delete()) {            
@@ -92,7 +98,7 @@ class RecipesController extends ControllerBase
             
             // Redirect to index if save is successfull
             if ($this->request->getPost('save_recipe') !== null && $recipe->save()) {
-                return $this->response->redirect('/recipes/edit/' . $id);   
+                return $this->response->redirect('/recipes/edit/' . $recipe->id);   
             }
             else {
                 // Gather all error messages
@@ -121,7 +127,7 @@ class RecipesController extends ControllerBase
         // Find recipe
         $recipe = Recipe::findFirstById($id);
         if (!$recipe) {
-            $this->flashSession->error("recipe is niet (meer) gevonden");
+            $this->flashSession->error("Recept is niet (meer) gevonden");
             
             return $this->response->redirect('recipes');   
         }

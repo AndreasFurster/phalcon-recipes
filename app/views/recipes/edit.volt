@@ -26,43 +26,46 @@
         <div class="row">
             <span class="col-md-3 col-form-label">Ingredienten</span>
             <div class="col-md-9">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Hoeveelheid</th>
-                            <th>Naam</th>
-                            <th>Actie</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for recipe_ingredient in recipe_ingredients %}
+                {% if recipe.id %}
+                    <table class="table">
+                        <thead>
                             <tr>
-                                <td>{{ recipe_ingredient.amount }}</td>
-                                <td>{{ recipe_ingredient.ingredient.name }}</td>
+                                <th>Hoeveelheid</th>
+                                <th>Naam</th>
+                                <th>Actie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for recipe_ingredient in recipe_ingredients %}
+                                <tr>
+                                    <td>{{ recipe_ingredient.amount }}</td>
+                                    <td>{{ recipe_ingredient.ingredient.name }}</td>
+                                    <td>
+                                        <button type="submit" name="remove_recipe_ingredient" value="{{ recipe_ingredient.id }}" class="btn btn-outline-danger btn-sm">Verwijderen</button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <td><input type="text" name="recipe_ingredient_amount" class="form-control form-control-sm"></td>
                                 <td>
-                                    <button type="submit" name="remove_recipe_ingredient" value="{{ recipe_ingredient.id }}" class="btn btn-outline-danger btn-sm">Verwijderen</button>
+                                    <select name="recipe_ingredient_id" class="form-control form-control-sm">
+                                        {% for ingredient in ingredients %}
+                                            <option value="{{ ingredient['id'] }}">{{ ingredient['name'] }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                <td>
+                                    <button type="submit" name="add_recipe_ingredient" value="yes" class="btn btn-primary btn-sm">Toevoegen</button>
                                 </td>
                             </tr>
-                        {% endfor %}
-                        <tr>
-                            <td><input type="text" name="recipe_ingredient_amount" class="form-control form-control-sm"></td>
-                            <td>
-                                <select name="recipe_ingredient_id" class="form-control form-control-sm">
-                                    {% for ingredient in ingredients %}
-                                        <option value="{{ ingredient['id'] }}">{{ ingredient['name'] }}</option>
-                                    {% endfor %}
-                                </select>
-                            </td>
-                            <td>
-                                <button type="submit" name="add_recipe_ingredient" value="yes" class="btn btn-primary btn-sm">Toevoegen</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p>
-                </p>
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p><i>Klik op opslaan om ingredienten toe te voegen.</i></p>
+                {% endif %}
             </div>
         </div>
+        
         <div class="form-group row">
             <label for="recipeDescription" class="col-md-3 col-form-label">Recept</label>
             <div class="col-md-9">
@@ -77,6 +80,10 @@
             </div>
         </div>
 
-        <button type="submit" name="save_recipe" value="save" class="btn btn-primary">Opslaan</button>
+        <div class="row">
+            <div class="col-md-9 offset-md-3">
+                <button type="submit" name="save_recipe" value="save" class="btn btn-primary">Opslaan</button>
+            </div>
+        </div>
     </form>
 {% endblock %}

@@ -25,10 +25,26 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/ingredients">Ingredienten</a>
-                        </li>
+
+                        {% if authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/ingredients">Ingredienten</a>
+                            </li>
+                        {% endif %}
+                        
                     </ul>
+                </div>
+                <div class="navbar-nav">
+                    {% if authenticated %}
+                        <div class="nav-item">
+                            Welkom {{ email }}
+                            <a class="btn btn-secondary" href="/account/logout">Uitloggen</a>
+                        </div>
+                    {% else %}
+                        <div class="nav-item">
+                            <a class="btn btn-secondary" href="/account/login">Inloggen</a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </nav>

@@ -27,10 +27,22 @@ class RecipeIngredient extends \Phalcon\Mvc\Model
         );
     }
 
-    public static function findByIds($recipe_id, $ingredient_id){
-        return self::findFirst([
-            'conditions' => 'ingredient_id=:ingredient_id: AND recipe_id=:recipe_id:',
-            'bind' => [ 'ingredient_id' => $ingredient_id, 'recipe_id' => $recipe_id],
-        ]);
+    public static function findByRecipeAndIngredient($recipe_id, $ingredient_id) 
+    {
+        // Create query, bind parameters and resturn first result
+        return self::query()
+            ->where('ingredient_id = :ingredient_id: AND recipe_id = :recipe_id:', [ 'ingredient_id' => $ingredient_id, 'recipe_id' => $recipe_id])
+            ->execute()
+            ->getFirst();
     }
+    
+    public static function findByIngredient($ingredient_id) 
+    {
+        // Create query, bind parameters and resturn first result
+        return self::query()
+            ->where('ingredient_id = :ingredient_id:', [ 'ingredient_id' => $ingredient_id ])
+            ->execute()
+            ->getFirst();
+    }
+    
 }

@@ -3,9 +3,11 @@
 {% block content %}
 
     <h1>Recepten</h1>
-    <p>
-        <a href="/recipes/create" class="btn btn-primary">Recept aanmaken</a>
-    </p>
+    {% if authenticated %}
+        <p>
+            <a href="/recipes/create" class="btn btn-primary">Recept aanmaken</a>
+        </p>
+    {% endif %}
 
     <div class="row">
         {% for recipe in recipes %}
@@ -16,8 +18,10 @@
                         <h5 class="card-title">{{ recipe.title }}</h5>
                         <p class="card-text">{{ recipe.subtitle }}</p>
                         <a href="/recipes/view/{{ recipe.id }}" class="btn btn-primary">Bekijk</a>
-                        <a href="/recipes/edit/{{ recipe.id }}" class="btn btn-outline-secondary">Bewerken</a>
-                        <a href="/recipes/delete/{{ recipe.id }}" class="btn btn-outline-danger">Verwijderen</a>
+                        {% if authenticated %}
+                            <a href="/recipes/edit/{{ recipe.id }}" class="btn btn-outline-secondary">Bewerken</a>
+                            <a href="/recipes/delete/{{ recipe.id }}" class="btn btn-outline-danger">Verwijderen</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

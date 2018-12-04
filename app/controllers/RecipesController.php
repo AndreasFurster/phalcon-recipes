@@ -15,7 +15,7 @@ class RecipesController extends ControllerBase
         // Find recipe
         $recipe = Recipe::findFirstById($id);
         if (!$recipe) {
-            $this->flash->error("recipe is niet (meer) gevonden");
+            $this->flashSession->error("recipe is niet (meer) gevonden");
             
             return $this->response->redirect('recipes');   
         }
@@ -26,7 +26,7 @@ class RecipesController extends ControllerBase
     }
 
     // GET for creating recipes
-    // This function inmediatly creates an new recipe and redirects to it's edit page
+    // Forward to edit
     public function createAction()
     {
         $this->dispatcher->forward(
@@ -34,12 +34,13 @@ class RecipesController extends ControllerBase
             'controller' => 'recipes',
             'action'     => 'edit',
         ]);
-        //return $this->response->redirect('recipes/edit/' . $recipe->id);   
     }
     
     // GET and POST for editing recipes
     public function editAction($id = null)
     {
+        parent::checkAuthentication();
+
         $recipe = Recipe::findFirstById($id);
         
         // Check recipe found
@@ -72,12 +73,12 @@ class RecipesController extends ControllerBase
                     $recipe_ingredient = RecipeIngredient::findFirstById($recipe_ingredient_id);
 
                     if (!$recipe_ingredient) {
-                        $this->flash->error("recipe is niet (meer) gevonden");    
+                        $this->flashSession->error("recipe is niet (meer) gevonden");    
                     }
                     else{
                         if (!$recipe_ingredient->delete()) {            
                             foreach ($recipe_ingredient->getMessages() as $message) {
-                                $this->flash->error($message);
+                                $this->flashSession->error($message);
                             }
                         }
                     }
@@ -108,17 +109,19 @@ class RecipesController extends ControllerBase
         // Only show ingredients that are not added to the recipe yet
         $this->view->ingredients = (object) array_filter(Ingredient::find()->toArray(), function ($ingridient) use (&$recipe)
         {
-            return RecipeIngredient::findByIds($recipe->id, $ingridient['id']) === false;
+            return RecipeIngredient::findByRecipeAndIngredient($recipe->id, $ingridient['id']) === false;
         });
     }
     
     // GET for deleting recipes
-    public function deleteAction($Id)
+    public function deleteAction($id)
     {
+        parent::checkAuthentication();
+
         // Find recipe
-        $recipe = Recipe::findFirstById($Id);
+        $recipe = Recipe::findFirstById($id);
         if (!$recipe) {
-            $this->flash->error("recipe is niet (meer) gevonden");
+            $this->flashSession->error("recipe is niet (meer) gevonden");
             
             return $this->response->redirect('recipes');   
         }
@@ -126,11 +129,11 @@ class RecipesController extends ControllerBase
         // Delete it
         if (!$recipe->delete()) {            
             foreach ($recipe->getMessages() as $message) {
-                $this->flash->error($message);
+                $this->flashSession->error($message);
             }
         }
         else{
-            $this->flash->success("recipe is verwijderd");
+            $this->flashSession->success("recipe is verwijderd");
         }
         
         return $this->response->redirect('recipes');   

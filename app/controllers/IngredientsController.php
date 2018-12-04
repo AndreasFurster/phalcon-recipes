@@ -3,7 +3,14 @@
 // Controller to mangage ingredients
 class IngredientsController extends ControllerBase
 {
+    public function initialize()
+    {
+        parent::initialize();
 
+        // This whole controller is only accessable if the user is authenticated
+        parent::checkAuthentication();
+    }
+    
     // GET for overview of current ingredients
     public function indexAction()
     {
@@ -40,7 +47,7 @@ class IngredientsController extends ControllerBase
         
         // Check ingredient found
         if (!$ingredient) {
-            $this->flash->error("Ingredient is niet (meer) gevonden");    
+            $this->flashSession->error("Ingredient is niet (meer) gevonden");    
             return $this->response->redirect('ingredients');   
         }
         
@@ -70,7 +77,7 @@ class IngredientsController extends ControllerBase
         // Find ingredient
         $ingredient = Ingredient::findFirstById($id);
         if (!$ingredient) {
-            $this->flash->error("Ingredient is niet (meer) gevonden");
+            $this->flashSession->error("Ingredient is niet (meer) gevonden");
             
             return $this->response->redirect('ingredients');   
         }
@@ -78,11 +85,11 @@ class IngredientsController extends ControllerBase
         // Delete it
         if (!$ingredient->delete()) {            
             foreach ($ingredient->getMessages() as $message) {
-                $this->flash->error($message);
+                $this->flashSession->error($message);
             }
         }
         else{
-            $this->flash->success("Ingredient is verwijderd");
+            $this->flashSession->success("Ingredient is verwijderd");
         }
         
         return $this->response->redirect('ingredients');   

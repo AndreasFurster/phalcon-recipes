@@ -79,9 +79,16 @@ class IngredientsController extends ControllerBase
         if (!$ingredient) {
             $this->flashSession->error("Ingredient is niet (meer) gevonden");
             
-            return $this->response->redirect('ingredients');   
+            return $this->response->redirect('ingredients');
         }
         
+        // Check for reference in the join table
+        if(RecipeIngredient::findByIngredient($ingredient->id)){
+            $this->flashSession->error("Kan ingredient niet verwijderen; ingredient is in gebruik door een recept.");
+            
+            return $this->response->redirect('ingredients');
+        }
+
         // Delete it
         if (!$ingredient->delete()) {            
             foreach ($ingredient->getMessages() as $message) {

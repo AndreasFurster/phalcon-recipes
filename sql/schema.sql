@@ -1,3 +1,4 @@
+-- Maybe don't run in production environment?
 DROP DATABASE `recipes`;
 CREATE DATABASE `recipes`;
 USE `recipes`;
@@ -15,7 +16,7 @@ CREATE TABLE `user` (
 -- Create ingredients table
 CREATE TABLE `ingredient` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(256) NOT NULL,
+  `name` varchar(256) NOT NULL UNIQUE,
 
   PRIMARY KEY (`id`)
 );
@@ -23,8 +24,8 @@ CREATE TABLE `ingredient` (
 -- Create recipes table
 CREATE TABLE `recipe` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `image` varchar(2048) NOT NULL,
   `title` varchar(256) NOT NULL,
+  `image` varchar(2048) NOT NULL,
   `subtitle` varchar(512) NOT NULL,
   `instruction` text DEFAULT NULL,
 
@@ -40,14 +41,11 @@ CREATE TABLE `recipe_ingredient` (
 
   PRIMARY KEY (`id`),
   
-  KEY (`recipe_id`),
-  KEY (`ingredient_id`),
+  FOREIGN KEY (`recipe_id`) 
+    REFERENCES `recipe` (`id`),
   
   FOREIGN KEY (`ingredient_id`) 
     REFERENCES `ingredient` (`id`),
 
-  FOREIGN KEY (`recipe_id`) 
-    REFERENCES `recipe` (`id`),
-  
   UNIQUE (`recipe_id`, `ingredient_id`)
 );

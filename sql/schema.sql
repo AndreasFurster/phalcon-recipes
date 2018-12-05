@@ -42,7 +42,8 @@ CREATE TABLE `recipe_ingredient` (
   PRIMARY KEY (`id`),
   
   FOREIGN KEY (`recipe_id`) 
-    REFERENCES `recipe` (`id`),
+    REFERENCES `recipe` (`id`)
+    ON DELETE CASCADE,
   
   FOREIGN KEY (`ingredient_id`) 
     REFERENCES `ingredient` (`id`),

@@ -14,7 +14,6 @@
             <tr>
                 <th>#</th>
                 <th>Naam</th>
-                <th>Aantal keer gebruikt</th>
                 <th>Acties</th>
             </tr>
         </thead>
@@ -23,7 +22,6 @@
                 <tr>
                     <th>{{ ingredient.id }}</th>
                     <td>{{ ingredient.name }}</td>
-                    <td>??</td>
                     <td>
                         <a href="/ingredients/edit/{{ ingredient.id }}" class="btn btn-outline-secondary btn-sm">Bewerken</a>
                         <a href="/ingredients/delete/{{ ingredient.id }}" class="btn btn-outline-danger btn-sm">Verwijderen</a>

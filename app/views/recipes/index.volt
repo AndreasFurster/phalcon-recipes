@@ -11,16 +11,16 @@
 
     <div class="row">
         {% for recipe in recipes %}
-            <div class="col-md-4">
+            <div class="col-md-6 col-sm-12">
                 <div class="card mb-4">
                     <img class="card-img-top" src="{{ recipe.image }}" alt="{{ recipe.title }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ recipe.title }}</h5>
                         <p class="card-text">{{ recipe.subtitle }}</p>
-                        <a href="/recipes/view/{{ recipe.id }}" class="btn btn-primary">Bekijk</a>
+                        <a href="/recipes/view/{{ recipe.id }}" class="btn btn-sm btn-primary">Bekijk</a>
                         {% if authenticated %}
-                            <a href="/recipes/edit/{{ recipe.id }}" class="btn btn-outline-secondary">Bewerken</a>
-                            <a href="/recipes/delete/{{ recipe.id }}" class="btn btn-outline-danger">Verwijderen</a>
+                            <a href="/recipes/edit/{{ recipe.id }}" class="btn btn-sm btn-outline-secondary">Bewerken</a>
+                            <a href="/recipes/delete/{{ recipe.id }}" class="btn btn-sm btn-outline-danger">Verwijderen</a>
                         {% endif %}
                     </div>
                 </div>

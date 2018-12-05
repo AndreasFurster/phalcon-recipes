@@ -20,9 +20,6 @@
         <nav class="navbar navbar-dark bg-primary navbar-expand-md">
             <div class="container">
                 <a class="navbar-brand" href="/">Recepten</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
 
@@ -33,19 +30,22 @@
                         {% endif %}
                         
                     </ul>
+                    <div>
+                        {% if authenticated %}
+                            <div class="nav-item">
+                                Welkom {{ email }}
+                                <a class="btn btn-secondary" href="/account/logout">Uitloggen</a>
+                            </div>
+                        {% else %}
+                            <div class="nav-item">
+                                <a class="btn btn-secondary" href="/account/login">Inloggen</a>
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
-                <div class="navbar-nav">
-                    {% if authenticated %}
-                        <div class="nav-item">
-                            Welkom {{ email }}
-                            <a class="btn btn-secondary" href="/account/logout">Uitloggen</a>
-                        </div>
-                    {% else %}
-                        <div class="nav-item">
-                            <a class="btn btn-secondary" href="/account/login">Inloggen</a>
-                        </div>
-                    {% endif %}
-                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
             </div>
         </nav>
 

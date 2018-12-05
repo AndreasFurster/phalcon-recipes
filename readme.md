@@ -1,21 +1,12 @@
-# Validatie opdracht propedeuse
-Dit is een eenvoidige recepten applicatie voor de validatie van propedeuse leerjaar 1 Avans deeltijd informatica.
+# Phalcon recipes sample
+This is a sample project written in Phalcon. View more information in the [wiki](https://github.com/AndreasFurster/phalcon-recipes/wiki).
 
 ## Installation
 ### Requirements
-* `curl`
-* `gettext`
-* `gd2` (to use the `Phalcon\Image\Adapter\Gd` class)
-* `libpcre3-dev` (Debian/Ubuntu), `pcre-devel` (CentOS), `pcre` (macOS)
-* `json`
-* `mbstring`
-* `pdo_*`
-* `fileinfo`
-* `openssl`
-
 * `Phalcon` [installation instructions](https://docs.phalconphp.com/en/3.4/installation)
+* `mod_rewrite` enabled
 
 ### Development
 * Clone project
-* Create database in mysql
-* Run `composer install`
+* Run `sql/schema.sql` and optionally `sql/seed.sql`
+
